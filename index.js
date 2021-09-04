@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
 
@@ -17,14 +18,25 @@ mongoose
 
 // Since mongoose's Promise is deprecated, we override it with Node's Promise
 mongoose.Promise = global.Promise;
+app.use(cors());
 
 app.use((req, res, next) => {
-	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
+		"Access-Control-Allow-Origin",
+		req.header("origin") ||
+			req.header("x-forwarded-host") ||
+			req.header("referer") ||
+			req.header("host"),
+	);
 	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 	res.setHeader("Access-Control-Allow-Credentials", true);
+	res.setHeader(
+		"Access-Control-Allow-Headers",
+		"COntent-Type",true
+	);
 	next();
 });
+
 
 app.use(bodyParser.json());
 

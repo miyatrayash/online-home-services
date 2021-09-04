@@ -25,6 +25,8 @@ router.post("/register", async (req,res) => {
                 password: user.password
             })
             .then((data) => {
+					localStorage.setItem("token", data.token);
+                
                 res.json(data)})
             .catch((err) => {
                  console.log(err);
@@ -41,14 +43,14 @@ router.post("/register", async (req,res) => {
 router.post("/login", (req, res)=> {
 
     const userLoggingIn = req.body;
-
+    console.log(userLoggingIn.username)
     if(userLoggingIn)
     {
         User.findOne({username: userLoggingIn.username})
         .then(dbUser => {
             if(!dbUser) {
                 return res.json({
-                    error: "Invalid Username of Password"
+                    error: "Invalid Username or Password"
                 })
             }
             bcrypt.compare(userLoggingIn.password, dbUser.password)
@@ -67,6 +69,7 @@ router.post("/login", (req, res)=> {
                         {expiresIn: 86400},
                         (err, token) => {
                             if(err) return res.json({message: err})
+                            // localStorage.setItem("token", token);
 
                             return res.json({
                                 message: "Success",
@@ -83,9 +86,10 @@ router.post("/login", (req, res)=> {
 })
 
 
+
 function verifyJWT(req,res, next) {
     const token = req.headers["x-access-token"]?.split(' ')[1]
-
+    // console.log(token);
     if(token) {
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(err) return res.json({
@@ -104,7 +108,7 @@ function verifyJWT(req,res, next) {
 
 
 
-router.get("/getUsername", verifyJWT, (req, res) => {
+router.get("/isUserAuth", verifyJWT, (req, res) => {
     res.json({isLoggedIn: true, username: req.user.username})
 })
 
