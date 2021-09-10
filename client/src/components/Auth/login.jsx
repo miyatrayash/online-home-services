@@ -2,9 +2,13 @@
 
 import {  useHistory } from "react-router";
 import { useEffect, useState } from "react";
+import { faUser, faLock } from "@fortawesome/fontawesome-free-solid";
 import axios from "axios";
+import Input from "../Input/Input";
+import Button from "../Button/Button"
+import "./login.css";
 
-function Login() {
+function Login(props) {
 	const history = useHistory();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -43,29 +47,32 @@ function Login() {
 				.then((data) => {
 					if (data) 
 					{
-						// console.log(data.token);
 						changeAuth(true);
 						localStorage.setItem("token", data.token);
 					}
 				});
 		}
 	}
-
 	return (
-		<form onSubmit={handleLogin}>
-			<input
+		<form onSubmit={handleLogin} className={props.className}>
+			<h2 className="title">Sign in</h2>
+			<Input
 				required
 				type="text"
 				value={username}
-				onChange={e => setUsername(e.target.value)}
+				icon={faUser}
+				onChange={(e) => setUsername(e.target.value)}
+				placeholder="Username"
 			/>
-			<input
+			<Input
 				required
 				type="password"
 				value={password}
-				onChange={e => setPassword(e.target.value)}
+				icon={faLock}
+				onChange={(e) => setPassword(e.target.value)}
+				placeholder="Password"
 			/>
-			<input type="submit" value="Submit" />
+			<Button type="submit" value="Login"  />
 		</form>
 	);
 }

@@ -25,7 +25,6 @@ router.post("/register", async (req,res) => {
                 password: user.password
             })
             .then((data) => {
-					localStorage.setItem("token", data.token);
                 
                 res.json(data)})
             .catch((err) => {
