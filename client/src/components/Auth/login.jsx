@@ -4,8 +4,8 @@ import {  useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import { faUser, faLock } from "@fortawesome/fontawesome-free-solid";
 import axios from "axios";
-import Input from "../Input/Input";
-import Button from "../Button/Button"
+import Input from "components/Input/Input";
+import Button from "components/Button/Button"
 import "./login.css";
 
 function Login(props) {

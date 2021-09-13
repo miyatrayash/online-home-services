@@ -7,8 +7,8 @@ import {
 	faEnvelope,
 	faLock,
 } from "@fortawesome/fontawesome-free-solid";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import Input from "components/Input/Input";
+import Button from "components/Button/Button";
 import axios from "axios";
 
 function Register(props) {

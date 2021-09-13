@@ -4,8 +4,8 @@ import React, {  useState } from "react";
 import Login from "./login";
 import Register from "./register";
 import "./AuthPage.css";
-import { ReactComponent as Design } from "../../Images/design.svg";
-import { ReactComponent as Late } from "../../Images/late.svg";
+import { ReactComponent as Design } from "Images/design.svg";
+import { ReactComponent as Late } from "Images/late.svg";
 
 function AuthPage() {
 	const [isSignUp, changeForm] = useState(false);
