@@ -82,6 +82,19 @@ function Register(props) {
 				placeholder="Confirm Password"
 			/>
 			<Button type="submit" value="Sign up"></Button>
+			<div className="content">
+				<h3>One of us ?</h3>
+				<p>Great! Just Login Again</p>
+				<Button
+					value="Sign In"
+					type="button"
+					onClick={() => {
+						props.changeVal();
+					}}
+				>
+					Sign In
+				</Button>
+			</div>
 		</form>
 	);
 }

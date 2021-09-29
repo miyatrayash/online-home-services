@@ -1,22 +1,22 @@
 /** @format */
 
-import {  useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import { faUser, faLock } from "@fortawesome/fontawesome-free-solid";
 import axios from "axios";
 import Input from "components/Input/Input";
-import Button from "components/Button/Button"
-import "./login.css";
+import Button from "components/Button/Button";
+//import "./login.css";
 
 function Login(props) {
 	const history = useHistory();
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 	const [isAuthenticated, changeAuth] = useState(false);
 
-	useEffect( () =>{
+	useEffect(() => {
 		const asyncCallBack = async () => {
-			console.log("here")
+			console.log("here");
 			const info = await axios
 				.get("http://localhost:5000/isUserAuth", {
 					headers: {
@@ -24,13 +24,11 @@ function Login(props) {
 					},
 				})
 				.then((res) => res.data);
-				if(info.isLoggedIn) 
-					history.push("/dashboard");
+			if (info.isLoggedIn) history.push("/dashboard");
 		};
 
 		asyncCallBack();
-	}, [history,isAuthenticated]);
-
+	}, [history, isAuthenticated]);
 
 	function handleLogin(e) {
 		e.preventDefault();
@@ -45,14 +43,14 @@ function Login(props) {
 					(err) => console.log(err),
 				)
 				.then((data) => {
-					if (data) 
-					{
+					if (data) {
 						changeAuth(true);
 						localStorage.setItem("token", data.token);
 					}
 				});
 		}
 	}
+
 	return (
 		<form onSubmit={handleLogin} className={props.className}>
 			<h2 className="title">Sign in</h2>
@@ -73,6 +71,15 @@ function Login(props) {
 				placeholder="Password"
 			/>
 			<Button type="submit" value="Login"  />
+			<div>
+				<h3>New here ?</h3>
+				<p>Please Sign Up to our website</p>
+				<Button value="Sign Up" type="button" onClick={() => {
+					props.changeVal();
+				}}>
+					Sign In
+				</Button>
+			</div>
 		</form>
 	);
 }

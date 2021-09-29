@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar
+{
+    display: flex;
+}
+.logo
+{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo img
+{
+    width: 50%;
+    border: 3px solid white;
+}
+.nav-list
+{
+   width: 50%;
+   background-color: yellow;
+   display: flex;
+  
+}
+
+.nav-list li{
+    list-style: none;
+    padding: 26px 30px;
+    width: auto;
+}
+.rightnav
+{
+    width: 50%;
+    background-color: blueviolet;
+    text-align: right;
+}
+#search
+{
+    padding: 5px;
+    font-size: 17px;
+    border: 2px solid grey;
+    border-radius: 9px;
+}

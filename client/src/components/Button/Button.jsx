@@ -1,11 +1,10 @@
+/** @format */
+
 import React from "react";
-import "./Button.css"
+import "./Button.css";
 
-function Button({value,type}) {
-    
-
-    return <input type={type} value={value} className="btn solid" />;
+function Button({ value, type, onClick=()=>{} }) {
+	return <input type={type} value={value} className=" btn  " onClick={() => onClick()}/>;
 }
-
 
 export default Button;
