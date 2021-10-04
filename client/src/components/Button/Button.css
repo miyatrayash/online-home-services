@@ -1,6 +1,6 @@
 /** @format */
 
-.btn {
+.cbtn {
 	width: 150px;
 	background-color: #000102;
 	border: none;
@@ -15,13 +15,13 @@
 	transition: 0.5s;
 }
 
-.btn:hover {
+.cbtn:hover {
 	background-color: rgb(187, 187, 187);
 	color: rgb(255, 255, 255);
 	width: 200px;
 }
 
-.btn.transparent {
+.cbtn.transparent {
 	margin: 0;
 	background: none;
 	border: 2px solid #fff;
@@ -31,6 +31,6 @@
 	font-size: 0.8rem;
 }
 
-.btn.transparent:hover {
+.cbtn.transparent:hover {
 	background-color: #fff;
 }

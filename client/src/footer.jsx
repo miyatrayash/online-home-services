@@ -5,7 +5,7 @@ export default function Foot()
 {
     return (
         <>
-			<footer className="site-footer">
+			<footer className="site-footer mt-auto">
 				<div className="container" style={{ overflowX: "hidden" }}>
 					<div className="row">
 						<div className="col-12 col-md-12">

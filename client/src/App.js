@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import HomePage from 'components/Home/home';
 import Navbar from "components/Navbar/Navbar";
 import Foot from "footer";
@@ -6,24 +5,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css";
 import AuthPage from 'components/Auth/AuthPage';
 
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";	
 function App() {
   
-	const [isLogin, changeLogin] = useState(false)
+	
 
-	function change()
-	{
-		changeLogin(!isLogin);
-	}
+	
 
   return (
-		<div>
+		<Router>
 			<Links />
-			<Navbar change={change} />
-			{console.log("here")}
-			{isLogin ? <AuthPage /> : <HomePage />}
+			<Navbar />
+			<Switch>
+				<Route path="/auth">
+					<AuthPage /> 
+				</Route>
+				
+				<Route path="/">
+					<HomePage />
+				</Route>
+			</Switch>
 
-			{/* <Foot /> */}
-		</div>
+			<Foot />
+		</Router>
 	);
 }
 

@@ -3,17 +3,13 @@
 import React, {  useState } from "react";
 import Login from "./login";
 import Register from "./register";
-// import "./AuthPage.css";
-import { ReactComponent as Design } from "Images/design.svg";
-import { ReactComponent as Late } from "Images/late.svg";
 
 function AuthPage() {
 	const [isSignUp, changeForm] = useState(false);
 
 
 	return (
-		<div className="container">
-			<div className="container d-flex justify-content-center">
+			<div className="container-fluid">
 				<div>
 					{isSignUp ? (
 						<Register changeVal={() => changeForm(false)}></Register>
@@ -21,7 +17,7 @@ function AuthPage() {
 						<Login changeVal={() => changeForm(true)}></Login>
 					)}
 				</div>
-			</div>
+			
 
 			{/* <div className="panels-container" >
 				<div className="panel left-panel">

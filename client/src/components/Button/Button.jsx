@@ -1,10 +1,18 @@
 /** @format */
 
 import React from "react";
-import "./Button.css";
+import styles from  "./Button.css";
 
-function Button({ value, type, onClick=()=>{} }) {
-	return <input type={type} value={value} className=" btn  " onClick={() => onClick()}/>;
+
+function Button(props) {
+	return (
+		<input
+			type={props.type}
+			value={props.value}
+			className={" btn cbtn " + props.className}
+			onClick={() => props.onClick()}
+		/>
+	);
 }
 
 export default Button;
