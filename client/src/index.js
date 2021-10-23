@@ -3,7 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
+import { authHeader } from 'helpers';
 
+axios.defaults.baseURL = "http://localhost:4000/";
+axios.defaults.headers =  authHeader();
+axios.interceptors.response.use((response) => {
+	//console.log("Response:", JSON.stringify(response, null, 2));
+	return response;
+});
 ReactDOM.render(
 	<React.StrictMode>
 		

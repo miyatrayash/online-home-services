@@ -1,21 +1,23 @@
 /** @format */
 
 import "./Input.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Input({ type, placeholder, icon, onChange, value, className }) {
-	console.log(icon);
-
+import { Field } from "formik";
+function Input(props) {
 	return (
-		<div className="input-field">
-			<FontAwesomeIcon icon={icon} className="i"></FontAwesomeIcon>
-			<input
-				type={type}
-				placeholder={placeholder}
-				onChange={onChange}
-				value={value}
-				className={className}
-			></input>
-		</div>
+		<Field
+			name={props.name}
+			type={props.type}
+			className={props.className}
+			value={props.value}
+			onChange={(e) => {
+				if (props.label) {
+					if (e.target.value !== "")
+						document.getElementById(props.label).innerHTML = "";
+					else document.getElementById(props.label).innerHTML = props.name;
+				}
+				props.setFieldValue(props.name, e.target.value);
+			}}
+		/>
 	);
 }
 

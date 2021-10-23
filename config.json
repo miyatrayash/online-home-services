@@ -1,0 +1,4 @@
+{
+    "secret": "OnFvWsD8DhCKCt7repgWCaAw5RQRAFH7",
+    "connectionString": "mongodb://mern:mongodb@mern-app-shard-00-00.bzg8h.mongodb.net:27017,mern-app-shard-00-01.bzg8h.mongodb.net:27017,mern-app-shard-00-02.bzg8h.mongodb.net:27017/OnlineServices?ssl=true&replicaSet=atlas-avzkps-shard-0&authSource=admin&retryWrites=true&w=majority"
+}

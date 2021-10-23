@@ -1,52 +1,27 @@
 /** @format */
 
-const bodyParser = require("body-parser");
+require("rootpath")();
 const express = require("express");
-const mongoose = require("mongoose");
-require("dotenv").config();
-const cors = require("cors");
-
 const app = express();
+const cors = require("cors");
+const jwt = require("helpers/jwt");
+const errorHandler = require("helpers/error-handler");
 
-const port = process.env.PORT || 5000;
-
-// Connect to the database
-mongoose
-	.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => console.log("Database connected successfully"))
-	.catch((err) => console.log(err));
-
-// Since mongoose's Promise is deprecated, we override it with Node's Promise
-mongoose.Promise = global.Promise;
+app.use(express.json({ limit: "16mb", extended: true }));
+app.use(express.urlencoded({ limit: "16mb", extended: true }));
 app.use(cors());
+app.use(jwt());
 
-app.use((req, res, next) => {
-	res.setHeader(
-		"Access-Control-Allow-Origin",
-		req.header("origin") ||
-			req.header("x-forwarded-host") ||
-			req.header("referer") ||
-			req.header("host"),
-	);
-	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-	res.setHeader("Access-Control-Allow-Credentials", true);
-	res.setHeader(
-		"Access-Control-Allow-Headers",
-		"COntent-Type",true
-	);
-	next();
-});
+// api routes
+app.use("/users", require("./users/user.controller"));
+app.use("/services", require("./Appliances/appliances.controller"));
+app.use("/orders", require("./Orders/orders.controller"))
 
+// global error handler
+app.use(errorHandler);
 
-app.use(bodyParser.json());
-
-app.use("/", require("./routes/authentication"));
-
-app.use((err, req, res, next) => {
-	console.log(err);
-	next();
-});
-
-app.listen(port, () => {
-	console.log(`Server running on port ${port}`);
+// start server
+const port = process.env.NODE_ENV === "production" ? 80 : 4000;
+const server = app.listen(port, function () {
+	console.log("Server listening on port " + port);
 });

@@ -2,8 +2,8 @@
 
 import { Link } from "react-router-dom";
 import "style.css";
-
 export default function Navbar(props) {
+
 	return (
 		<nav
 			className="navbar navbar-expand-lg navbar-dark"
@@ -49,26 +49,54 @@ export default function Navbar(props) {
 							Reviews
 						</a>
 					</li>
-					<li className="nav-item">
-						<a className="nav-link" href="#cleaning">
-							Cleaning
-						</a>
-					</li>
 				</ul>
+
 				<ul className="navbar-nav ms-auto me-3">
-					<li className="nav-item">
-						<Link className="btn btn-outline-light" to="/auth">
-							Login
-						</Link>
-					</li>
-					<li className="nav-item">
-						
-					</li>
-					<li className="nav-item">
-						<Link className="btn btn-outline-light" to="/auth">
-							Register
-						</Link>
-					</li>
+					{props.user && (
+						<>
+							{props.isAdmin && (
+								<>
+									<Link to="/admin" className="nav-item nav-link">
+										Admin
+									</Link>
+									<Link to="/myServices" className="nav-item nav-link">
+										myServices
+									</Link>
+								</>
+							)}
+							<Link to="/services" className="nav-item nav-link">
+								Services
+							</Link>
+							<Link
+								to={`/users/${props.user.username}`}
+								className="nav-item nav-link"
+							>
+								Profile
+							</Link>
+							<a
+								href="/login"
+								onClick={props.logout}
+								className="nav-item nav-link"
+							>
+								Logout
+							</a>
+						</>
+					)}
+					{!props.user && (
+						<>
+							<li className="nav-item">
+								<Link className="btn btn-outline-light" to="/auth">
+									Login
+								</Link>
+							</li>
+							<li className="nav-item"></li>
+							<li className="nav-item">
+								<Link className="btn btn-outline-light" to="/auth">
+									Register
+								</Link>
+							</li>
+						</>
+					)}
 				</ul>
 			</div>
 		</nav>

@@ -1,4 +1,4 @@
-import HomePage from "components/Home/home";
+import HomePage from "HomePage/home";
 import "style.css";
 
 export default function Foot()

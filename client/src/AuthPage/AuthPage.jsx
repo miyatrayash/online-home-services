@@ -3,8 +3,13 @@
 import React, {  useState } from "react";
 import Login from "./login";
 import Register from "./register";
-
+import { authenticationService } from "services";
+import { useHistory } from "react-router";
 function AuthPage() {
+	const history = useHistory();
+
+	if (authenticationService.currentUserValue) history.replace("/");
+
 	const [isSignUp, changeForm] = useState(false);
 
 

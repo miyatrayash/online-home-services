@@ -1,26 +1,77 @@
-import HomePage from 'components/Home/home';
+/** @format */
+
+import HomePage from "HomePage/home";
 import Navbar from "components/Navbar/Navbar";
 import Foot from "footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css";
-import AuthPage from 'components/Auth/AuthPage';
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";	
+import AuthPage from "AuthPage/AuthPage";
+import authenticationService from "services/authentication.service";
+import {history, Role} from 'helpers';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { PrivateRoute } from "components";
+import { useState,useEffect } from "react";
+import { AdminPage } from "AdminPage/AdminPage";
+import Edit from "ProfilePage/EditUserDetails";
+import Profile from "ProfilePage/UserDetails";
+import MyAppliances from "MyAppliances/MyAppliances";
+import NewAppliances from "MyAppliances/newAppliances";
+import Appliances from "Appliances/Appliances";
+import checkOut from "OrderPage/checkOut";
+import myOrders from "OrderPage/myOrders";
+import Orders from "OrderPage/Orders";
 function App() {
-  
-	
+	const [currentUser, setCurrentUser] = useState(null);
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [isVendor, setIsVendor] = useState(false);
 
-	
+	useEffect(() => {
+		authenticationService.currentUser.subscribe((x) => {
 
-  return (
-		<Router>
+			setCurrentUser(x);
+			setIsAdmin(x && x.role === Role.Admin);
+			setIsVendor(x && x.role === Role.Vendor);
+			console.log(x && x.role);
+		});
+	}, [currentUser, isAdmin, isVendor]);
+
+	function logout() {
+		authenticationService.logout();
+		history.push("/auth");
+	}
+
+	return (
+		<Router history={history}>
 			<Links />
-			<Navbar />
+			<Navbar user={currentUser} isAdmin={isAdmin} logout={logout} />
 			<Switch>
 				<Route path="/auth">
-					<AuthPage /> 
+					<AuthPage />
 				</Route>
-				
+				<PrivateRoute exact path="/services" component={Appliances} />
+				<PrivateRoute
+					exact
+					path="/myServices"
+					roles={[Role.Admin, Role.Vendor]}
+					component={MyAppliances}
+				/>
+				<PrivateRoute
+					exact
+					path="/createServices"
+					roles={[Role.Admin, Role.Vendor]}
+					component={NewAppliances}
+				/>
+				<PrivateRoute exact path="/" component={HomePage} />
+				<PrivateRoute exact path="/checkOut" component={checkOut} />
+				<PrivateRoute exact path="/orders" component={myOrders} />
+				<PrivateRoute exact path="/myOrders" component={Orders} />
+				<PrivateRoute
+					path="/admin"
+					roles={[Role.Admin]}
+					component={AdminPage}
+				/>
+				<PrivateRoute path="/users/:username/edit" component={Edit} />
+				<PrivateRoute path="/users/:username" component={Profile} />
 				<Route path="/">
 					<HomePage />
 				</Route>
@@ -31,10 +82,7 @@ function App() {
 	);
 }
 
-
-
 function Links() {
-	
 	return (
 		<>
 			<link rel="icon" href="Images/favicon.png" />
