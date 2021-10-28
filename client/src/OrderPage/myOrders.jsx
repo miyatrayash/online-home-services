@@ -267,8 +267,12 @@ class MyAppliances extends React.Component {
 
 												{service.status === "Pending" && (
 													<Material.Button variant="contained" onClick={()=>{
-														OrderService.delete(service.id);
-														window.location.reload();
+														OrderService.delete(service.id).then((res)=>{
+															this.getServices({
+																category: this.state.category,
+																status: this.state.status,
+															});
+														});
 													}}>
 														Cancel
 													</Material.Button>

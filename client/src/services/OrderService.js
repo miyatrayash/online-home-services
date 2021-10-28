@@ -69,12 +69,7 @@ async function update(order,getServices) {
 
 	
 	return await axios
-		.put(`orders/${order.id}`, JSON.stringify(data), requestOptions).then((res)=> {
-			if (getServices) {
-				console.log("sdfhsdk;lfksdljfdsjpokf");
-				getServices();
-			}
-		})
+		.put(`orders/${order.id}`, JSON.stringify(data), requestOptions)
 		.catch(handleResponse);
 }
 

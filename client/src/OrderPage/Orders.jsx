@@ -198,7 +198,11 @@ class MyAppliances extends React.Component {
 													margin: 2,
 													padding: 3,
 													backgroundColor:
-														service.status === "Accepted" ? "#00FF00" : "#000",
+														service.status === "Accepted"
+															? "#00FF00"
+															: service.status === "Finished"
+															? "#FF3232"
+															: "#000",
 													borderRadius: 4,
 
 													".text": {
@@ -249,16 +253,34 @@ class MyAppliances extends React.Component {
 																	id: service.id,
 																	status: "Accepted",
 																},
-																() => {
-																	this.getServices({
-																		category: this.state.category,
-																		status: this.state.status,
-																	});
-																},
-															);
+															
+															).then((res)=> {
+																this.getServices({
+																	category: this.state.category,
+																	status: this.state.status,
+																});
+															});
 														}}
 													>
 														Accept
+													</Material.Button>
+												)}
+												{service.status === "Accepted" && (
+													<Material.Button
+														variant="contained"
+														onClick={() => {
+															OrderService.update({
+																id: service.id,
+																status: "Finished",
+															}).then(() => {
+																this.getServices({
+																	category: this.state.category,
+																	status: this.state.status,
+																});
+															});
+														}}
+													>
+														Finish
 													</Material.Button>
 												)}
 											</Material.ListItemButton>

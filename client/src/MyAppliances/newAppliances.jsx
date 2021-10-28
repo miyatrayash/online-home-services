@@ -89,6 +89,8 @@ class NewAppliances extends React.Component {
 				setFieldValue("address", result.results[0].formatted_address);
 			}),
 		);
+
+
 	};
 
 	render() {
@@ -102,19 +104,19 @@ class NewAppliances extends React.Component {
 					initialValues={
 						this.props.location.state
 							? {
-									name: this.props.location.state.name,
-									price: this.props.location.state.price,
-									address: this.props.location.state.address,
-									category: this.props.location.state.category,
-									description: this.props.location.state.description,
-							  }
+								name: this.props.location.state.name,
+								price: this.props.location.state.price,
+								address: this.props.location.state.address,
+								category: this.props.location.state.category,
+								description: this.props.location.state.description,
+							}
 							: {
-									name: "",
-									price: 0,
-									address: "",
-									category: "Room Cleaning",
-									description: "",
-							  }
+								name: "",
+								price: 0,
+								address: "",
+								category: "Room Cleaning",
+								description: "",
+							}
 					}
 					validationSchema={Yup.object().shape({
 						name: Yup.string().required("Name is required"),
@@ -183,7 +185,9 @@ class NewAppliances extends React.Component {
 											<Paper
 												elevation={5}
 												sx={{
-													width: "auto",
+													width: "100%",
+													display: "flex",
+													justifyContent: "center",
 													alignItems: "start",
 													borderRadius: 4,
 												}}
@@ -275,22 +279,18 @@ class NewAppliances extends React.Component {
 
 													<div className="d-grid justify-content-center">
 														<Button
-															value={
-																this.props.location.state ? "Update" : "Create"
-															}
+															value={this.props.location.state ? "Update" : "Create"}
 															type="submit"
-															onClick={() => {}}
+															onClick={() => { }}
 														></Button>
 														{this.props.location.state && (
 															<Button
 																value="Delete"
 																type="submit"
 																onClick={() => {
-																	AppService.delete(
-																		this.props.location.state.id,
-																	).then((res) => {
+																	AppService.delete(this.props.location.state.id).then((res) => {
 																		this.routingFunction();
-																	});
+																	})
 																}}
 															></Button>
 														)}

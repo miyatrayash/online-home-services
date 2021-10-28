@@ -52,5 +52,5 @@ async function update(id, params) {
 }
 
 async function _delete(id) {
-	await Order.findByIdAndRemove(id);
+	return await Order.findByIdAndRemove(id);
 }

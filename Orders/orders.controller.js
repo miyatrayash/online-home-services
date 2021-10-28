@@ -31,44 +31,41 @@ function getAll(req, res, next) {
 		.catch((err) => next(err));
 }
 function getById(req, res, next) {
-    OrderService.getById(req.params.id)
-			.then((orders) => {
-				res.json(orders);
-			})
-			.catch((err) => next(err));
+	OrderService.getById(req.params.id)
+		.then((orders) => {
+			res.json(orders);
+		})
+		.catch((err) => next(err));
 }
 function update(req, res, next) {
 
-	console.log("herte");
-
 	OrderService.update(req.params.id, req.body)
-		.then((order) =>  res.json(order))
+		.then((order) => res.json(order))
 		.catch((err) => next(err));
 }
 function _delete(req, res, next) {
-OrderService.delete(req.params.id)
-.catch((err) => next(err));
+	OrderService.delete(req.params.id)
+		.then((order) => res.json(order))
+		.catch((err) => next(err));
 }
 function getAllById(req, res, next) {
-    OrderService.getAllById(req.params.id)
-			.then((orders) => {
-				res.json(orders);
-			})
-			.catch((err) => next(err));
+	OrderService.getAllById(req.params.id)
+		.then((orders) => {
+			res.json(orders);
+		})
+		.catch((err) => next(err));
 }
 function getByServiceId(req, res, next) {
-    OrderService.getByServiceId(req.params.id)
-			.then((orders) => {
-				res.json(orders);
-			})
-			.catch((err) => next(err));
+	OrderService.getByServiceId(req.params.id)
+		.then((orders) => {
+			res.json(orders);
+		})
+		.catch((err) => next(err));
 }
 function getByCustomerId(req, res, next) {
-
-
-    OrderService.getByCustomerId(req.params.id)
-			.then((orders) => {
-				res.json(orders);
-			})
-			.catch((err) => next(err));
+	OrderService.getByCustomerId(req.params.id)
+		.then((orders) => {
+			res.json(orders);
+		})
+		.catch((err) => next(err));
 }
