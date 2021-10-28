@@ -3,7 +3,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { ArrowRightRounded } from "@mui/icons-material";
 import { withRouter } from "react-router-dom";
 import * as Material from "@mui/material";
 import { OrderService } from "services";

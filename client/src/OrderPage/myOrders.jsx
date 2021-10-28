@@ -3,10 +3,10 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { ArrowRightRounded } from "@mui/icons-material";
 import { withRouter } from "react-router-dom";
 import * as Material from "@mui/material";
 import { OrderService } from "services";
+
 class MyAppliances extends React.Component {
 	constructor(props) {
 		super(props);
@@ -35,6 +35,7 @@ class MyAppliances extends React.Component {
 			state: params,
 		});
 	}
+
 	getServices({ category, status }) {
 		OrderService.getByCustomer().then((services) => {
 			var data = services.data;
@@ -92,14 +93,18 @@ class MyAppliances extends React.Component {
 							<Paper
 								elevation={5}
 								sx={{
-									width: "50%",
-									display: "flex",
-									justifyContent: "center",
+									width: "auto",
 									borderRadius: 4,
+									
 								}}
 							>
-								<Material.Grid container>
-									<Material.Grid xs={12} item>
+								<Material.Grid container 
+									sx={{
+										display: "flex",
+										justifyContent: "center"
+									}}
+								>
+									<Material.Grid  item>
 										<Material.FormControl
 											variant="standard"
 											sx={{ m: 1, minWidth: 120 }}
@@ -129,7 +134,7 @@ class MyAppliances extends React.Component {
 											</Material.Select>
 										</Material.FormControl>
 									</Material.Grid>
-									<Material.Grid xs={6} item>
+									<Material.Grid  item>
 										<Material.FormControl
 											variant="standard"
 											sx={{ m: 1, minWidth: 120 }}

@@ -72,11 +72,7 @@ function App() {
 				/>
 				<PrivateRoute path="/users/:username/edit" component={Edit} />
 				<PrivateRoute path="/users/:username" component={Profile} />
-				<Route path="/">
-					<HomePage />
-				</Route>
 			</Switch>
-
 			<Foot />
 		</Router>
 	);

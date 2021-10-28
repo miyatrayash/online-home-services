@@ -25,7 +25,7 @@ class NewAppliances extends React.Component {
 
 	state = {
 		markerPosition: defaultLocation,
-		address: ""
+		address: "",
 	};
 	initialValues = {
 		name: "",
@@ -55,7 +55,7 @@ class NewAppliances extends React.Component {
 					lat: this.props.location.state.loc.coordinates[0],
 					lng: this.props.location.state.loc.coordinates[1],
 				},
-				address: props.address
+				address: props.address,
 			});
 		} else
 			this.setState({
@@ -89,8 +89,11 @@ class NewAppliances extends React.Component {
 				setFieldValue("address", result.results[0].formatted_address);
 			}),
 		);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 	};
 
 	render() {
@@ -168,8 +171,13 @@ class NewAppliances extends React.Component {
 									}}
 								>
 									<Material.Grid
+<<<<<<< HEAD
 										// xs={2}
 										item
+=======
+										item
+										xs={2}
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 										sx={{
 											height: "100vh",
 										}}
@@ -184,9 +192,13 @@ class NewAppliances extends React.Component {
 											<Paper
 												elevation={5}
 												sx={{
+<<<<<<< HEAD
 													width: "100%",
 													display: "flex",
 													justifyContent: "center",
+=======
+													width: "auto",
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 													alignItems: "start",
 													borderRadius: 4,
 												}}
@@ -195,10 +207,16 @@ class NewAppliances extends React.Component {
 													variant="standard"
 													sx={{
 														"& .MuiTextField-root,& .MuiSelect-root, #demo-simple-select-standard-label ":
+<<<<<<< HEAD
 														{
 															m: 2,
 															width: "25ch",
 														},
+=======
+															{
+																m: 2,
+															},
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 													}}
 												>
 													<Material.TextField
@@ -255,8 +273,13 @@ class NewAppliances extends React.Component {
 														rows={4}
 														onChange={(e) => {
 															this.setState({
+<<<<<<< HEAD
 																address: e.target.value
 															})
+=======
+																address: e.target.value,
+															});
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 															setFieldValue("address", e.target.value);
 														}}
 													/>
@@ -279,18 +302,34 @@ class NewAppliances extends React.Component {
 
 													<div className="d-grid justify-content-center">
 														<Button
+<<<<<<< HEAD
 															value={this.props.location.state ? "Update" : "Create"}
 															type="submit"
 															onClick={() => { }}
+=======
+															value={
+																this.props.location.state ? "Update" : "Create"
+															}
+															type="submit"
+															onClick={() => {}}
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 														></Button>
 														{this.props.location.state && (
 															<Button
 																value="Delete"
 																type="submit"
 																onClick={() => {
+<<<<<<< HEAD
 																	AppService.delete(this.props.location.state.id).then((res) => {
 																		this.routingFunction();
 																	})
+=======
+																	AppService.delete(
+																		this.props.location.state.id,
+																	).then((res) => {
+																		this.routingFunction();
+																	});
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 																}}
 															></Button>
 														)}
@@ -306,7 +345,11 @@ class NewAppliances extends React.Component {
 										</Box>
 									</Material.Grid>
 									<Material.Grid
+<<<<<<< HEAD
 										// xs={10}
+=======
+										xs={10}
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 										sx={{
 											backgroundColor: "blue",
 											width: "83%",
@@ -326,7 +369,13 @@ class NewAppliances extends React.Component {
 													width: "100%",
 													height: "100vh",
 												}}
+<<<<<<< HEAD
 												onClick={(place) => this.onMouseOverEvent(place, setFieldValue)}
+=======
+												onClick={(place) =>
+													this.onMouseOverEvent(place, setFieldValue)
+												}
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 											>
 												<Marker position={this.state.markerPosition}></Marker>
 											</GoogleMap>
@@ -334,7 +383,11 @@ class NewAppliances extends React.Component {
 									</Material.Grid>
 								</Material.Grid>
 							</Form>
+<<<<<<< HEAD
 						)
+=======
+						);
+>>>>>>> 06c63d2643475e61842c609e3c63a3be99c4f8f5
 					}}
 				</Formik>
 			</Box>
