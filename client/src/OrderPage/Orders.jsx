@@ -198,7 +198,7 @@ class MyAppliances extends React.Component {
 													margin: 2,
 													padding: 3,
 													backgroundColor:
-														service.status === "Accepted" ? "#00FF00" : "#000",
+														service.status === "Accepted" ? "#00FF00" : service.status === "Finished" ? "#FF3232" : "#000",
 													borderRadius: 4,
 
 													".text": {
@@ -248,11 +248,26 @@ class MyAppliances extends React.Component {
 																id: service.id,
 																status: "Accepted",
 															}).then(() => {
-																window.location.reload();
+																this.getServices();
 															});
 														}}
 													>
 														Accept
+													</Material.Button>
+												)}
+												{service.status === "Accepted" && (
+													<Material.Button
+														variant="contained"
+														onClick={() => {
+															OrderService.update({
+																id: service.id,
+																status: "Finished",
+															}).then(() => {
+																window.location.reload();
+															});
+														}}
+													>
+														Finish
 													</Material.Button>
 												)}
 											</Material.ListItemButton>

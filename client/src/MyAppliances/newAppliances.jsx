@@ -68,7 +68,7 @@ class NewAppliances extends React.Component {
 			pathname: `/myServices`,
 		});
 	};
-	onMouseOverEvent = (place,setFieldValue) => {
+	onMouseOverEvent = (place, setFieldValue) => {
 		fetch(
 			//`https://api.radar.io/v1/geocode/reverse?coordinates=${place.latLng.lat()},${place.latLng.lng()}`,
 			`https://maps.googleapis.com/maps/api/geocode/json?latlng=${place.latLng.lat()},${place.latLng.lng()}&key=AIzaSyB7AbECqCey2hPmL1JMcTfvfDqPrVWji8o`,
@@ -90,7 +90,7 @@ class NewAppliances extends React.Component {
 			}),
 		);
 
-		
+
 	};
 
 	render() {
@@ -104,19 +104,19 @@ class NewAppliances extends React.Component {
 					initialValues={
 						this.props.location.state
 							? {
-									name: this.props.location.state.name,
-									price: this.props.location.state.price,
-									address: this.props.location.state.address,
-									category: this.props.location.state.category,
-									description: this.props.location.state.description,
-							  }
+								name: this.props.location.state.name,
+								price: this.props.location.state.price,
+								address: this.props.location.state.address,
+								category: this.props.location.state.category,
+								description: this.props.location.state.description,
+							}
 							: {
-									name: "",
-									price: 0,
-									address: "",
-									category: "Room Cleaning",
-									description: "",
-							  }
+								name: "",
+								price: 0,
+								address: "",
+								category: "Room Cleaning",
+								description: "",
+							}
 					}
 					validationSchema={Yup.object().shape({
 						name: Yup.string().required("Name is required"),
@@ -160,181 +160,182 @@ class NewAppliances extends React.Component {
 					{({ values, setFieldValue, status, isSubmitting }) => {
 						//setFieldValue("address", this.state.address);
 						return (
-						<Form>
-							<Material.Grid
-								container
-								sx={{
-									height: "100vh",
-								}}
-							>
+							<Form>
 								<Material.Grid
-									xs={2}
-									item
+									container
 									sx={{
 										height: "100vh",
 									}}
 								>
-									<Box
+									<Material.Grid
+										// xs={2}
+										item
 										sx={{
-											display: "flex",
-											alignItems: "stretch",
 											height: "100vh",
 										}}
 									>
-										<Paper
-											elevation={5}
+										<Box
 											sx={{
-												width: "100%",
 												display: "flex",
-												justifyContent: "center",
-												alignItems: "start",
-												borderRadius: 4,
+												alignItems: "stretch",
+												height: "100vh",
 											}}
 										>
-											<Material.FormControl
-												variant="standard"
+											<Paper
+												elevation={5}
 												sx={{
-													"& .MuiTextField-root,& .MuiSelect-root, #demo-simple-select-standard-label ":
+													width: "100%",
+													display: "flex",
+													justifyContent: "center",
+													alignItems: "start",
+													borderRadius: 4,
+												}}
+											>
+												<Material.FormControl
+													variant="standard"
+													sx={{
+														"& .MuiTextField-root,& .MuiSelect-root, #demo-simple-select-standard-label ":
 														{
 															m: 2,
 															width: "25ch",
 														},
-												}}
-											>
-												<Material.TextField
-													required
-													name="name"
-													label="name"
-													value={values["name"]}
-													onChange={(e) => {
-														this.setState({});
-														setFieldValue("name", e.target.value);
-													}}
-												/>
-												<Material.TextField
-													required
-													label="price"
-													value={values["price"]}
-													type="number"
-													inputProps={{
-														inputMode: "numeric",
-														pattern: "[0-9]*",
-													}}
-													onChange={(e) => {
-														setFieldValue("price", e.target.value);
-													}}
-												/>
-												<Material.Select
-													labelId="demo-simple-select-standard-label"
-													id="demo-simple-select-standard"
-													value={values["category"]}
-													onChange={(e) => {
-														console.log(e.target.value);
-														setFieldValue("category", e.target.value);
 													}}
 												>
-													<Material.InputLabel id="demo-simple-select-standard-label">
-														Category
-													</Material.InputLabel>
-													<Material.MenuItem value="Room Cleaning">
-														Room Cleaning
-													</Material.MenuItem>
-													<Material.MenuItem value="Pest Control">
-														Pest Control
-													</Material.MenuItem>
-													<Material.MenuItem value="Plumber">
-														Plumber
-													</Material.MenuItem>
-												</Material.Select>
-												<Material.TextField
-													required
-													multiline
-													label="address"
-													value={this.state.address}
-													type="text"
-													rows={4}
-													onChange={(e) => {
-														this.setState({
-															address: e.target.value
-														})
-														setFieldValue("address", e.target.value);
-													}}
-												/>
-												<Material.TextField
-													required
-													multiline
-													label="Description"
-													value={values["description"]}
-													type="text"
-													rows={4}
-													onChange={(e) => {
-														setFieldValue("description", e.target.value);
-													}}
-												/>
-												{status && (
-													<div className={"alert alert-danger"}>
-														{status.toString()}
-													</div>
-												)}
+													<Material.TextField
+														required
+														name="name"
+														label="name"
+														value={values["name"]}
+														onChange={(e) => {
+															this.setState({});
+															setFieldValue("name", e.target.value);
+														}}
+													/>
+													<Material.TextField
+														required
+														label="price"
+														value={values["price"]}
+														type="number"
+														inputProps={{
+															inputMode: "numeric",
+															pattern: "[0-9]*",
+														}}
+														onChange={(e) => {
+															setFieldValue("price", e.target.value);
+														}}
+													/>
+													<Material.Select
+														labelId="demo-simple-select-standard-label"
+														id="demo-simple-select-standard"
+														value={values["category"]}
+														onChange={(e) => {
+															console.log(e.target.value);
+															setFieldValue("category", e.target.value);
+														}}
+													>
+														<Material.InputLabel id="demo-simple-select-standard-label">
+															Category
+														</Material.InputLabel>
+														<Material.MenuItem value="Room Cleaning">
+															Room Cleaning
+														</Material.MenuItem>
+														<Material.MenuItem value="Pest Control">
+															Pest Control
+														</Material.MenuItem>
+														<Material.MenuItem value="Plumber">
+															Plumber
+														</Material.MenuItem>
+													</Material.Select>
+													<Material.TextField
+														required
+														multiline
+														label="address"
+														value={this.state.address}
+														type="text"
+														rows={4}
+														onChange={(e) => {
+															this.setState({
+																address: e.target.value
+															})
+															setFieldValue("address", e.target.value);
+														}}
+													/>
+													<Material.TextField
+														required
+														multiline
+														label="Description"
+														value={values["description"]}
+														type="text"
+														rows={4}
+														onChange={(e) => {
+															setFieldValue("description", e.target.value);
+														}}
+													/>
+													{status && (
+														<div className={"alert alert-danger"}>
+															{status.toString()}
+														</div>
+													)}
 
-												<div className="d-grid justify-content-center">
-													<Button
-														value={this.props.location.state ? "Update": "Create"}
-														type="submit"
-														onClick={() => {}}
-													></Button>
-													{this.props.location.state && (
+													<div className="d-grid justify-content-center">
 														<Button
-															value="Delete"
+															value={this.props.location.state ? "Update" : "Create"}
 															type="submit"
-															onClick={() => {
-																AppService.delete(this.props.location.state.id).then((res) => {
-																	this.routingFunction();
-																})
-															}}
+															onClick={() => { }}
 														></Button>
-													)}
-													{isSubmitting && (
-														<img
-															alt="load"
-															src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-														/>
-													)}
-												</div>
-											</Material.FormControl>
-										</Paper>
-									</Box>
+														{this.props.location.state && (
+															<Button
+																value="Delete"
+																type="submit"
+																onClick={() => {
+																	AppService.delete(this.props.location.state.id).then((res) => {
+																		this.routingFunction();
+																	})
+																}}
+															></Button>
+														)}
+														{isSubmitting && (
+															<img
+																alt="load"
+																src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+															/>
+														)}
+													</div>
+												</Material.FormControl>
+											</Paper>
+										</Box>
+									</Material.Grid>
+									<Material.Grid
+										// xs={10}
+										sx={{
+											backgroundColor: "blue",
+											width: "83%",
+											height: "100vh",
+										}}
+										item
+									>
+										<LoadScript googleMapsApiKey="AIzaSyB7AbECqCey2hPmL1JMcTfvfDqPrVWji8o">
+											<GoogleMap
+												id="map"
+												zoom={5}
+												center={{
+													lat: this.state.markerPosition.lat,
+													lng: this.state.markerPosition.lng,
+												}}
+												mapContainerStyle={{
+													width: "100%",
+													height: "100vh",
+												}}
+												onClick={(place) => this.onMouseOverEvent(place, setFieldValue)}
+											>
+												<Marker position={this.state.markerPosition}></Marker>
+											</GoogleMap>
+										</LoadScript>
+									</Material.Grid>
 								</Material.Grid>
-								<Material.Grid
-									xs={10}
-									sx={{
-										backgroundColor: "blue",
-										width: "100%",
-										height: "100vh",
-									}}
-									item
-								>
-									<LoadScript googleMapsApiKey="AIzaSyB7AbECqCey2hPmL1JMcTfvfDqPrVWji8o">
-										<GoogleMap
-											id="map"
-											zoom={5}
-											center={{
-												lat: this.state.markerPosition.lat,
-												lng: this.state.markerPosition.lng,
-											}}
-											mapContainerStyle={{
-												width: "100%",
-												height: "100vh",
-											}}
-											onClick={(place) => this.onMouseOverEvent(place,setFieldValue)}
-										>
-											<Marker position={this.state.markerPosition}></Marker>
-										</GoogleMap>
-									</LoadScript>
-								</Material.Grid>
-							</Material.Grid>
-						</Form>
-					)}}
+							</Form>
+						)
+					}}
 				</Formik>
 			</Box>
 		);
