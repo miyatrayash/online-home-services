@@ -50,6 +50,9 @@ class MyAppliances extends React.Component {
 					return service.status === status;
 				});
 			}
+			data.sort(function (a, b) {
+				return a.createdDate < b.createdDate;
+			});
 			this.setState({ services: data });
 		});
 	}

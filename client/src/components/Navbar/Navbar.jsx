@@ -62,10 +62,17 @@ export default function Navbar(props) {
 									<Link to="/myServices" className="nav-item nav-link">
 										myServices
 									</Link>
+									<Link to="/myOrders" className="nav-item nav-link">
+										myOrders
+									</Link>
 								</>
 							)}
 							<Link to="/services" className="nav-item nav-link">
 								Services
+							</Link>
+
+							<Link to="/orders" className="nav-item nav-link">
+								Orders
 							</Link>
 							<Link
 								to={`/users/${props.user.username}`}

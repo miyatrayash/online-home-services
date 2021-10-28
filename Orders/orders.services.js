@@ -48,7 +48,7 @@ async function update(id, params) {
 
 	await order.save();
 
-	return order.toJSON();
+	return order;
 }
 
 async function _delete(id) {

@@ -58,15 +58,23 @@ function getById(id) {
 	const requestOptions = { method: "GET", headers: authHeader() };
 	return axios.get(`orders/${id}`, requestOptions).catch(handleResponse);
 }
-function update(order) {
+
+async function update(order,getServices) {
 	const requestOptions = {
 		headers: { ...authHeader(), "Content-Type": "application/json" },
 	};
 
 	const { id, ...data } = order;
 	console.log(data);
-	return axios
-		.put(`orders/${order.id}`, JSON.stringify(data), requestOptions)
+
+	
+	return await axios
+		.put(`orders/${order.id}`, JSON.stringify(data), requestOptions).then((res)=> {
+			if (getServices) {
+				console.log("sdfhsdk;lfksdljfdsjpokf");
+				getServices();
+			}
+		})
 		.catch(handleResponse);
 }
 

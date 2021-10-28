@@ -35,6 +35,7 @@ class MyAppliances extends React.Component {
 		});
 	}
 	getServices({ category, status }) {
+		console.log("here");
 		OrderService.getByOwner().then((services) => {
 			var data = services.data;
 			//console.log(user)
@@ -243,12 +244,18 @@ class MyAppliances extends React.Component {
 													<Material.Button
 														variant="contained"
 														onClick={() => {
-															OrderService.update({
-																id: service.id,
-																status: "Accepted",
-															}).then(() => {
-																window.location.reload();
-															});
+															OrderService.update(
+																{
+																	id: service.id,
+																	status: "Accepted",
+																},
+																() => {
+																	this.getServices({
+																		category: this.state.category,
+																		status: this.state.status,
+																	});
+																},
+															);
 														}}
 													>
 														Accept

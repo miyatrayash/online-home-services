@@ -42,7 +42,7 @@ function update(req, res, next) {
 	console.log("herte");
 
 	OrderService.update(req.params.id, req.body)
-		
+		.then((order) =>  res.json(order))
 		.catch((err) => next(err));
 }
 function _delete(req, res, next) {
