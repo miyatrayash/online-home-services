@@ -7,7 +7,6 @@ import Img from "../Images/1.png";
 import { useState } from "react";
 
 
-
 function Profile(props) {
 	var currentUser = authenticationService.currentUserValue;
 	const params = props.match.params;
@@ -32,7 +31,7 @@ function Profile(props) {
 				<div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
 					<div className="card border-0 shadow rounded-3 my-5">
 						<div className="card-body p-4 p-sm-5">
-							<h2 className="card-title text-center mb-5">Sign Up</h2>
+							<h2 className="card-title text-center mb-5">Profile Page</h2>
 							<div>
 								<div className="form-group">
 									<label
